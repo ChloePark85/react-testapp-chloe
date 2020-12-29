@@ -22,6 +22,7 @@ export default function AboutPage() {
 const style = StyleSheet.create({
     container: {
       //앱의 배경 색
+      flex:1,
       backgroundColor: '#262c74',
     },
     title: {
