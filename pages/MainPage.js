@@ -5,6 +5,7 @@ import data from '../data.json';
 import Card from '../components/Card';
 import Loading from '../components/Loading';
 import { StatusBar } from 'expo-status-bar';
+import AboutPage from './AboutPage';
 
 export default function MainPage({navigation,route}) {
   console.disableYellowBox = true;
@@ -14,6 +15,8 @@ export default function MainPage({navigation,route}) {
   const [state,setState] = useState([])
   //카테고리에 따라 다른 꿀팁을 그때그때 저장관리할 상태
   const [cateState,setCateState] = useState([])
+  //소개 페이지를 관리할 상태
+  const [introState, setIntroState] = useState([])
 
   //컴포넌트에 상태를 여러개 만들어도 됨
   //관리할 상태이름과 함수는 자유자재로 정의할 수 있음
@@ -51,6 +54,7 @@ export default function MainPage({navigation,route}) {
     }
 
 
+
 	let todayWeather = 10 + 17;
     let todayCondition = "흐림"
 
@@ -64,13 +68,15 @@ export default function MainPage({navigation,route}) {
         <StatusBar style="black" />
         {/* <Text style={styles.title}>나만의 꿀팁</Text> */}
         <Text style={styles.weather}>오늘의 날씨: {todayWeather + '°C ' + todayCondition} </Text>
+        {/* 3주차 숙제 */}
+        <TouchableOpacity style={styles.topButton} onPress={()=>navigation.navigate('AboutPage')}><Text style={styles.topButtonText}>소개 페이지</Text></TouchableOpacity>
         <Image style={styles.mainImage} source={main}/>
         <ScrollView style={styles.middleContainer} horizontal indicatorStyle={"white"}>
             <TouchableOpacity style={styles.middleButtonAll} onPress={()=>{category('전체보기')}}><Text style={styles.middleButtonTextAll}>전체보기</Text></TouchableOpacity>
             <TouchableOpacity style={styles.middleButton01} onPress={()=>{category('생활')}}><Text style={styles.middleButtonText}>생활</Text></TouchableOpacity>
             <TouchableOpacity style={styles.middleButton02} onPress={()=>{category('재테크')}}><Text style={styles.middleButtonText}>재테크</Text></TouchableOpacity>
             <TouchableOpacity style={styles.middleButton03} onPress={()=>{category('반려견')}}><Text style={styles.middleButtonText}>반려견</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.middleButton04} onPress={()=>{category('꿀팁 찜')}}><Text style={styles.middleButtonText}>꿀팁 찜</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.middleButton04} onPress={()=>navigation.navigate('LikePage')}><Text style={styles.middleButtonText}>꿀팁 찜</Text></TouchableOpacity>
         </ScrollView>
         <View style={styles.cardContainer}>
             {/* 하나의 카드 영역을 나타내는 View */}
@@ -89,6 +95,22 @@ const styles = StyleSheet.create({
   container: {
     //앱의 배경 색
     backgroundColor: '#fff',
+  },
+  topButton:{
+    width:100,
+    height:50,
+    padding:15,
+    backgroundColor:"#f6c9d4",
+    borderRadius:15,
+    margin:7,
+    justifyContent: "flex-start",
+    alignSelf: "flex-end"
+  },
+  topButtonText: {
+    color:"#fff",
+    fontWeight:"700",
+    //텍스트의 현재 위치에서의 정렬 
+    textAlign:"right"
   },
   title: {
     //폰트 사이즈

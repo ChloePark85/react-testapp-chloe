@@ -1,7 +1,13 @@
 import React from 'react'
-import {StyleSheet, View, Text, Image} from 'react-native'
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
+import * as Linking from 'expo-linking';
 
 export default function AboutPage() {
+
+  const link = () => {
+    Linking.openURL("https://www.naver.com")
+  }
+
     return(
         <View>
             <View style={style.container}>
@@ -10,9 +16,9 @@ export default function AboutPage() {
                     <Image style={style.image} source={{uri: "https://firebasestorage.googleapis.com/v0/b/sparta-image.appspot.com/o/lecture%2FaboutImage.png?alt=media&token=13e1c4f6-b802-4975-9773-e305fc7475c4"}}/>
                     <Text style={style.text1}>많은 내용을 간결하게 담아내려 노력했습니다!</Text>
                     <Text style={style.text2}>꼭 완주하셔서 여러분의 것으로 만들어가시길 바랍니다.</Text>
-                    <View style={style.button1}>
+                    <TouchableOpacity style={style.button1} onPress={()=>link()}>
                         <Text style={style.buttonText}>여러분의 인스타계정</Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -22,7 +28,6 @@ export default function AboutPage() {
 const style = StyleSheet.create({
     container: {
       //앱의 배경 색
-      flex:1,
       backgroundColor: '#262c74',
     },
     title: {
