@@ -16,7 +16,8 @@ const firebaseConfig = {
     storageBucket: "react-testapp-chloe.appspot.com",
     messagingSenderId: "874618375915",
     appId: "1:874618375915:web:1b74355c90bff0d725f8ae",
-    measurementId: "G-K2V1R3R7CW"
+    measurementId: "G-K2V1R3R7CW",
+    databaseURL: "https://react-testapp-chloe-default-rtdb.firebaseio.com/"
 };
 
 //사용 방법입니다. 

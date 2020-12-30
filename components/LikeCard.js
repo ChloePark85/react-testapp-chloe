@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, Text, StyleSheet,TouchableOpacity} from 'react-native'
+import {View, Image, Text, StyleSheet,TouchableOpacity, ScrollView} from 'react-native'
 
 //MainPage로 부터 navigation 속성을 전달받아 Card 컴포넌트 안에서 사용
 export default function Card({content,navigation}){
@@ -11,6 +11,10 @@ export default function Card({content,navigation}){
                 <Text style={styles.cardTitle} numberOfLines={1}>{content.title}</Text>
                 <Text style={styles.cardDesc} numberOfLines={3}>{content.desc}</Text>
                 <Text style={styles.cardDate}>{content.date}</Text>
+                <View style={styles.buttonContainer} horizontal indicatorStyle={"black"}>
+                    <TouchableOpacity style={styles.button}><Text style={styles.detailButtonText}>자세히보기</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.button}><Text style={styles.unlikeButtonText}>찜 해제</Text></TouchableOpacity>
+                </View>
             </View>
         </View>
     )
@@ -48,5 +52,30 @@ const styles = StyleSheet.create({
     cardDate: {
       fontSize:10,
       color:"#A6A6A6",
+    },
+    buttonContainer: {
+        flexDirection: "row",
+    },
+    button: {
+        width:90,
+        marginTop:20,
+        marginRight:10,
+        marginLeft:10,
+        padding:10,
+        borderWidth:1,
+        borderColor:'deeppink',
+        borderRadius:7
+    },
+    detailButtonText: {
+        color:"deeppink",
+        fontWeight:"700",
+        //텍스트의 현재 위치에서의 정렬 
+        textAlign:"center"
+    },
+    unlikeButtonText: {
+        color:"deeppink",
+        fontWeight:"700",
+        //텍스트의 현재 위치에서의 정렬 
+        textAlign:"center"
     }
 });
