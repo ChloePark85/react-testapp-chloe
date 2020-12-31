@@ -1,8 +1,26 @@
 import React from 'react';
-import {View, Image, Text, StyleSheet,TouchableOpacity, ScrollView} from 'react-native'
+import {View, Image, Text, StyleSheet,TouchableOpacity, Alert} from 'react-native'
+import {firebase_db} from "../firebaseConfig"
+import Constants from 'expo-constants';
 
 //MainPage로 부터 navigation 속성을 전달받아 Card 컴포넌트 안에서 사용
 export default function Card({content,navigation}){
+
+    const remove = () => {
+        
+        // like 방 안에
+        // 특정 사용자 방안에
+        // 특정 찜 데이터 아이디 방안에
+        // 특정 찜 데이터 몽땅 저장!
+        // 찜 데이터 방 > 사용자 방 > 어떤 찜인지 아이디
+        const user_id = Constants.installationId;
+        firebase_db.ref('/like/'+user_id+'/'+ content.idx).remove().then(function(){
+            Alert.alert("찜 해제완료!")
+            navigation.navigate('LikePage')
+        });
+    }
+
+
     return(
         //카드 자체가 버튼역할로써 누르게되면 상세페이지로 넘어가게끔 TouchableOpacity를 사용
         <View style={styles.card} onPress={()=>{navigation.navigate('DetailPage',content)}}>
@@ -12,8 +30,8 @@ export default function Card({content,navigation}){
                 <Text style={styles.cardDesc} numberOfLines={3}>{content.desc}</Text>
                 <Text style={styles.cardDate}>{content.date}</Text>
                 <View style={styles.buttonContainer} horizontal indicatorStyle={"black"}>
-                    <TouchableOpacity style={styles.button}><Text style={styles.detailButtonText}>자세히보기</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.button}><Text style={styles.unlikeButtonText}>찜 해제</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.button}><Text style={styles.detailButtonText} onPress={()=>{navigation.navigate('DetailPage',{idx:content.idx})}}>자세히보기</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.button}><Text style={styles.unlikeButtonText} onPress={()=>remove()}>찜 해제</Text></TouchableOpacity>
                 </View>
             </View>
         </View>

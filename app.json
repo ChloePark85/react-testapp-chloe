@@ -16,17 +16,23 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
-    },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "buildNumber": "1.0.0",
+      "bundleIdentifier": "com.reacttestapp.chloe",
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-4269660549066408~6844666256"
+      }
+    },
+    "android": {
+          "package": "com.reacttestapp.chloe",
+          "versionCode": 1,
+          "config": {
+            "googleMobileAdsAppId": "ca-app-pub-4269660549066408~9311241015"
+          }
     }
   }
 }
